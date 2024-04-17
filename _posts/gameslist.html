@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Game Universe</title>
     <style>
+        .navbar {
+            position: static;
+            z-index: 9999;
+        }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
@@ -107,13 +111,13 @@
 </header>
 <body>
     <nav>
-        <a href="http://127.0.0.1:5501/_posts/index.html">HOME</a>
-        <a href="http://127.0.0.1:5501/_posts/gameslist.html">GAMES</a>
-        <a href="http://127.0.0.1:5501/_posts/favorites.html">FAVORITE</a>
-        <a href="http://127.0.0.1:5501/_posts/ibio.html">BIO</a>
-        <a href="http://127.0.0.1:5501/_posts/2024-02-07-SLogin%20copy.html">LOGIN</a>
-        <a href="http://127.0.0.1:5501/_posts/2024-02-06-SignUp.html">SIGN UP</a>
-        <a href="http://127.0.0.1:5501/_posts/edit.html">UPDATE</a>
+        <a href="http://127.0.0.1:5500/_posts/index.html">HOME</a>
+        <a href="http://127.0.0.1:5500/_posts/gameslist.html">GAMES</a>
+        <a href="http://127.0.0.1:5500/_posts/favorites.html">FAVORITE</a>
+        <a href="http://127.0.0.1:5500/_posts/ibio.html">BIO</a>
+        <a href="http://127.0.0.1:5500/_posts/2024-02-07-SLogin copy.html">LOGIN</a>
+        <a href="http://127.0.0.1:5500/_posts/2024-02-06-SignUp.html">SIGN UP</a>
+        <a href="http://127.0.0.1:5500/_posts/edit.html">UPDATE</a>
     </nav>
     <div class="filter">
         <label for="nameFilter">Filter by Name:</label>
@@ -188,7 +192,29 @@
                 image: '../images/gamecreatoriamges/eyedropper.png',
                 status: 'Free',
                 favorited: false
+            },
+            {
+                name: 'HTML Runner',
+                description: 'Explore HTML with this fascinating runner and editor!',
+                image: '../images/gamecreatoriamges/htmlimage.png',
+                status: 'Free',
+                favorited: false
+            },
+            {
+                name: 'Task List Manager',
+                description: 'Stay productive and on task with this cool Task List Manager!',
+                image: '../images/gamecreatoriamges/tasklistmanager.png',
+                status: 'Free',
+                favorited: false
+            },
+            {
+                name: 'Cancer Diagnosis',
+                description: 'Check if you have cancer based on the properties of your cell!',
+                image: '../images/gamecreatoriamges/cancer.png',
+                status: 'Free',
+                favorited: false
             }
+
         ];
         const gamesSection = document.getElementById('gamesSection');
         function renderGames(data) {
@@ -211,9 +237,9 @@
                 const favoriteIcon = document.createElement('img');
                 favoriteIcon.className = 'favorite-icon';
                 favoriteIcon.src = game.favorited
-                    ? '' 
-                    : '';
-                favoriteIcon.alt = '';
+                    ? '../images/FavoriteImages/Screenshot_2024-02-15_3.01.45_PM.png'
+                    : '../images/FavoriteImages/Screenshot_2024-02-15_3.01.28_PM.png';
+                favoriteIcon.alt = 'Favorite Icon';
                 favoriteIcon.addEventListener('click', (event) => {
                     event.stopPropagation(); // Prevents the game click event from triggering
                     toggleFavorite(index);
@@ -251,14 +277,17 @@
         }
         function navigateToGame(index) {
             const gameUrls = [
-                'http://127.0.0.1:5501/_posts/Tictactoegame.html',
-                'http://127.0.0.1:5501/_posts/obstaclegame.html',
-                'http://127.0.0.1:5501/_posts/Guessthenumber.html',
-                'http://127.0.0.1:5501/_posts/2048game.html',
-                'http://127.0.0.1:5501/_posts/2024-01-11-GUI%20for%20Game%20Editor.html',
-                'http://127.0.0.1:5501/_posts/pingpong.html',
-                'http://127.0.0.1:5501/_posts/drawinggame.html',
-                'http://127.0.0.1:5501/_posts/eyedropper.html'
+                'http://127.0.0.1:5500/_posts/Tictactoegame.html',
+                'http://127.0.0.1:5500/_posts/obstaclegame.html',
+                'http://127.0.0.1:5500/_posts/Guessthenumber.html',
+                'http://127.0.0.1:5500/_posts/2048game.html',
+                'http://127.0.0.1:5500/_posts/2024-01-11-GUI%20for%20Game%20Editor.html',
+                'http://127.0.0.1:5500/_posts/pingpong.html',
+                'http://127.0.0.1:5500/_posts/drawinggame.html',
+                'http://127.0.0.1:5500/_posts/eyedropper.html',
+                'http://127.0.0.1:5500/_posts/2024-01-18-Test-For-Javascript-Code.html',
+                'http://127.0.0.1:5500/_posts/2024-02-28-TaskListMaker.html',
+                'http://127.0.0.1:5500/_posts/2024-03-05-Cancer-Project-Frontend.html'
             ];
             window.location.href = gameUrls[index];
         }

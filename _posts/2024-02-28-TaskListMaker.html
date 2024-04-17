@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task List Maker</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f3f3;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    input[type="text"] {
+        width: 80%;
+        padding: 8px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    li {
+        margin-bottom: 8px;
+    }
+    .task-item {
+        display: flex;
+        align-items: center;
+    }
+    .task-item input[type="checkbox"] {
+        margin-right: 5px;
+    }
+    .delete-btn {
+        background-color: #ff6347;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+    .delete-btn:hover {
+        background-color: #cc4b37;
+    }
+    .task-input-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        padding: 8px 16px;
+        cursor: pointer;
+    }
+    .task-input-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Task List Maker</h1>
+    <input type="text" id="taskInput" placeholder="Enter task">
+    <button class="task-input-btn" onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+</div>
+
+<script>
+    // Task list array to store tasks
+    let tasks = [];
+
+    // Function to add task to the list
+    function addTask() {
+        const taskInput = document.getElementById('taskInput');
+        const task = taskInput.value.trim();
+        if (task !== '') {
+            tasks.push({ name: task, completed: false });
+            renderTasks();
+            taskInput.value = '';
+        }
+    }
+
+    // Function to render tasks
+    function renderTasks() {
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+        tasks.forEach((task, index) => {
+            const listItem = document.createElement('li');
+            listItem.className = 'task-item';
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.checked = task.completed;
+            checkbox.addEventListener('change', () => toggleCompleted(index));
+            const label = document.createElement('label');
+            label.textContent = task.name;
+            label.style.textDecoration = task.completed ? 'line-through' : 'none';
+            const deleteBtn = document.createElement('button');
+            deleteBtn.textContent = 'Delete';
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.addEventListener('click', () => deleteTask(index));
+            listItem.appendChild(checkbox);
+            listItem.appendChild(label);
+            listItem.appendChild(deleteBtn);
+            taskList.appendChild(listItem);
+        });
+    }
+
+    // Function to toggle task completion
+    function toggleCompleted(index) {
+        tasks[index].completed = !tasks[index].completed;
+        renderTasks();
+    }
+
+    // Function to delete a task
+    function deleteTask(index) {
+        tasks.splice(index, 1);
+        renderTasks();
+    }
+
+    // Initial render
+    renderTasks();
+</script>
+</body>
+</html>

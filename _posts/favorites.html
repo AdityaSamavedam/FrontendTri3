@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
             background-color: #f9f9f9;
             text-align: center;
         }
-
         header {
             background-color: #333;
             color: white;
@@ -22,14 +20,12 @@
             padding: 1.5em;
             font-size: 2em;
         }
-
         nav {
             display: flex;
             justify-content: space-around;
             background-color: #444;
             padding: 1em;
         }
-
         nav a {
             text-decoration: none;
             color: white;
@@ -37,15 +33,12 @@
             font-size: 1.2em;
             transition: color 0.3s ease-in-out;
         }
-
         nav a:hover {
             color: #ffcc00;
         }
-
         .filter {
             margin-top: 1em;
         }
-
         #gamesSection {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -53,7 +46,6 @@
             justify-content: center;
             padding: 20px;
         }
-
         .game {
             position: relative;
             overflow: hidden;
@@ -62,18 +54,15 @@
             transition: transform 0.3s ease-in-out;
             cursor: pointer;
         }
-
         .game:hover {
             transform: scale(1.05);
         }
-
         .game img {
             width: 100%;
             height: auto;
             border-radius: 8px 8px 0 0;
             z-index: 0;
         }
-
         /*.
         favorite-icon {
             position: absolute;
@@ -85,7 +74,6 @@
             transition: transform 0.2s ease-in-out;
         }
         */
-
         .notification {
             position: fixed;
             bottom: 10px;
@@ -95,7 +83,6 @@
             padding: 15px;
             display: none;
         }
-
         footer {
             background-color: #333;
             color: white;
@@ -123,19 +110,16 @@
         <a href="http://127.0.0.1:5500/_posts/gameslist.html">GAMES</a>
         <a href="http://127.0.0.1:5500/_posts/favorites.html">FAVORITE</a>
         <a href="http://127.0.0.1:5500/_posts/ibio.html">BIO</a>
-        <a href="http://127.0.0.1:5500/_posts/2024-02-07-SLogin copy.html">LOGIN</a>
+        <a href="http://127.0.0.1:5500/_posts/2024-02-07-SLogin Copy.html">LOGIN</a>
         <a href="http://127.0.0.1:5500/_posts/2024-02-06-SignUp.html">SIGN UP</a>
         <a href="http://127.0.0.1:5500/_posts/edit.html">UPDATE</a>
     </nav>
     <button onclick="getInfo()">Click me</button>
     <section id="gamesSection"></section>
-
     <div class="notification" id="notification">
         Game Favorited!
     </div>
-
     <footer>&copy; 2024 Your Game Universe. All rights reserved by... why are u reading this.</footer>
-
     <script>
         //globalVar = 3;
         const gamesData = [
@@ -180,11 +164,10 @@
                 gameNum: 5
             },
         ];
-
         
         function getInfo() {
         console.log("here");
-        const url = 'http://127.0.0.1:8084/api/users/private';
+        const url = 'http://127.0.0.1:8088/api/users/private';
         // prepare HTML result container for new output
         const resultContainer = document.getElementById("result");
         const options = {
@@ -203,7 +186,7 @@
                 // check for response errors and display
                 if (response.status !== 200) {
                     const errorMsg = 'Database response error: ' + response.status;
-                    window.location.href = "http://127.0.0.1:5501/_posts/2024-02-07-401error.html";
+                    window.location.href = "http://127.0.0.1:5500/_posts/2024-02-07-401error.html";
                     console.log(errorMsg);
                     const tr = document.createElement("tr");
                     const td = document.createElement("td");
@@ -251,117 +234,94 @@
         }
         
         const gamesSection = document.getElementById('gamesSection');
-
         function renderGame(gameNum, data)
         {
             gamesSection.innerHTML = '';
-
             data.forEach((game, index) => {
                 if(index+1==gameNum)
                 {
                 const gameDiv = document.createElement('div');
                 gameDiv.className = 'game';
-
                 const img = document.createElement('img');
                 img.src = game.image;
                 img.alt = game.name;
-
                 const gameInfoDiv = document.createElement('div');
                 gameInfoDiv.className = 'game-info';
-
                 const h3 = document.createElement('h3');
                 h3.textContent = game.name;
-
                 const p = document.createElement('p');
                 p.textContent = game.description;
-
                 const statusDiv = document.createElement('div');
                 statusDiv.className = 'sign-in';
                 statusDiv.textContent = game.status;
-
                 const favoriteIcon = document.createElement('img');
                 favoriteIcon.className = 'favorite-icon';
                 favoriteIcon.src = game.favorited
                     ? '../images/FavoriteImages/Screenshot_2024-02-15_3.01.45_PM.png'
                     : '../images/FavoriteImages/Screenshot_2024-02-15_3.01.28_PM.png';
-                
-                favoriteIcon.addEventListener('click', (event) => {
-                    event.stopPropagation(); // Prevents the game click event from triggering
-                    toggleFavorite(index);
-                });
-
-                gameInfoDiv.appendChild(h3);
-                gameInfoDiv.appendChild(p);
-                gameInfoDiv.appendChild(statusDiv);
-
-                gameDiv.appendChild(img);
-                gameDiv.appendChild(favoriteIcon);
-                gameDiv.appendChild(gameInfoDiv);
-
-                gameDiv.addEventListener('click', () => {
-                    navigateToGame(index);
-                });
-
-                gamesSection.appendChild(gameDiv);
-            }
-            });
-        }
-        
-        /*
-        function filterGames() {
-            const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
-            const statusFilter = document.getElementById('statusFilter').value.toLowerCase();
-
-            const filteredGames = gamesData.filter(game => {
-                const isNameMatch = game.name.toLowerCase().includes(nameFilter);
-                const isStatusMatch = statusFilter === '' || game.status.toLowerCase().includes(statusFilter);
-                return isNameMatch && isStatusMatch;
-            });
-
-            renderGames(filteredGames);
-        }
-
-        function toggleFavorite(index) {
-            gamesData[index].favorited = !gamesData[index].favorited;
-            renderGames(gamesData);
-
-            const notification = document.getElementById('notification');
-            notification.style.display = 'block';
-
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 2000); // Hide the notification after 2 seconds
-        }
-
-        function navigateToGame(index) {
-            const gameUrls = [
-                'http://127.0.0.1:5500/_posts/Tictactoegame.html',
-                'http://127.0.0.1:5500/_posts/obstaclegame.html',
-                'http://127.0.0.1:5500/_posts/Guessthenumber.html',
-                'http://127.0.0.1:5500/_posts/2048game.html',
-                'http://127.0.0.1:5500/_posts/2024-01-11-GUI%20for%20Game%20Editor.html',
-            ];
-
-            window.location.href = gameUrls[index];
-        }
-
-        <!-- renderGames(gamesData); -->
-
-        function showGameByNumber(gameNumber) {
-            const gameDivs = document.querySelectorAll('.game'); // Select all game elements
-        
-            gameDivs.forEach((gameDiv, index) => {
-                if (gamesData[index].gameNum === gameNumber) {
-                    gameDiv.style.display = 'block'; // Display the game if its number matches the specified gameNumber
-                } else {
-                    gameDiv.style.display = 'none'; // Hide the game if its number does not match the specified gameNumber
+                    favoriteIcon.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Prevents the game click event from triggering
+                        toggleFavorite(index);
+                    });
+                    gameInfoDiv.appendChild(h3);
+                    gameInfoDiv.appendChild(p);
+                    gameInfoDiv.appendChild(statusDiv);
+                    gameDiv.appendChild(img);
+                    gameDiv.appendChild(favoriteIcon);
+                    gameDiv.appendChild(gameInfoDiv);
+                    gameDiv.addEventListener('click', () => {
+                        navigateToGame(index);
+                    });
+                    gamesSection.appendChild(gameDiv);
                 }
-            });
-        }
-
-    </script>
-    <script type="module">
-    </script>
-</body>
-
-</html>
+                });
+            }
+            
+            /*
+            function filterGames() {
+                const nameFilter = document.getElementById('nameFilter').value.toLowerCase();
+                const statusFilter = document.getElementById('statusFilter').value.toLowerCase();
+                const filteredGames = gamesData.filter(game => {
+                    const isNameMatch = game.name.toLowerCase().includes(nameFilter);
+                    const isStatusMatch = statusFilter === '' || game.status.toLowerCase().includes(statusFilter);
+                    return isNameMatch && isStatusMatch;
+                });
+                renderGames(filteredGames);
+            }
+            function toggleFavorite(index) {
+                gamesData[index].favorited = !gamesData[index].favorited;
+                renderGames(gamesData);
+                const notification = document.getElementById('notification');
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 2000); // Hide the notification after 2 seconds
+            }
+            function navigateToGame(index) {
+                const gameUrls = [
+                    'http://127.0.0.1:5500/_posts/Tictactoegame.html',
+                    'http://127.0.0.1:5500/_posts/obstaclegame.html',
+                    'http://127.0.0.1:5500/_posts/Guessthenumber.html',
+                    'http://127.0.0.1:5500/_posts/2048game.html',
+                    'http://127.0.0.1:5500/_posts/2024-01-11-GUI%20for%20Game%20Editor.html',
+                ];
+                window.location.href = gameUrls[index];
+            }
+            <!-- renderGames(gamesData); -->
+            function showGameByNumber(gameNumber) {
+                const gameDivs = document.querySelectorAll('.game'); // Select all game elements
+            
+                gameDivs.forEach((gameDiv, index) => {
+                    if (gamesData[index].gameNum === gameNumber) {
+                        gameDiv.style.display = 'block'; // Display the game if its number matches the specified gameNumber
+                    } else {
+                        gameDiv.style.display = 'none'; // Hide the game if its number does not match the specified gameNumber
+                    }
+                });
+            }
+            
+        </script>
+        <script type="module">
+        </script>
+    </body>
+    </html>

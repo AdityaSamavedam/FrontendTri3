@@ -425,7 +425,6 @@ function selectMode(cellIteration, activeCell, cellType){
             }
 
             break
-        
         case "Javascript Runner":
             var mainCodeSpace = document.createElement("div")
             var codeSpace = document.createElement("textarea")
@@ -450,7 +449,6 @@ function selectMode(cellIteration, activeCell, cellType){
             break
             
             // Initialize CodeMirror
-
             var editor = CodeMirror.fromTextArea(codeSpace, {
                 mode: "javascript",
                 theme: "default",
@@ -721,6 +719,12 @@ function createSliders(labels, color, container, showcaseClass) {
     }
 }
 
+/**
+ * Swaps the colors between two tile editors.
+ * @param {array} tileEditorSetColor - The array representing the color of the first tile editor.
+ * @param {array} secondTileEditorSetColor - The array representing the color of the second tile editor.
+ * @returns {boolean} Returns true if colors were successfully switched, otherwise false.
+ */
 function switchColors(tileEditorSetColor, secondTileEditorSetColor) {
     // Copy the primary and secondary color values
     var tempColor = tileEditorSetColor.slice(); // Creating a copy
@@ -737,6 +741,8 @@ function switchColors(tileEditorSetColor, secondTileEditorSetColor) {
     // Update slider positions
     updateSliderPositions(tileEditorSetColor);
     updateSliderPositions(secondTileEditorSetColor);
+
+    return true; // Return true indicating successful color switch
 }
 
 

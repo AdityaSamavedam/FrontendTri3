@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Game Universe</title>
+    <style>
+    .navbar {
+        position: static;
+        z-index: 9999;
+    }
+    .right-aligned-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-right: 175px;
+    }
+    .text-container {
+        margin-left:150px;
+    }
+    .text-box {
+        max-width: 400px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+        color: black;
+    }
+    .text-box h2 {
+        margin-top: 25;
+        color: #333;
+    }
+    body {
+        color: #fff;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrQebDzXq7xZe8mLIkoJzwSTpr12pBS7O6RouIC0cAVA&s');
+        background-size: cover;
+    }
+    form {
+        max-width: 400px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: black;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #000;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="checkbox"] {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        background-color: #F2F2F2;
+        border: none;
+        border-radius: 4px;
+        color: #333;
+    }
+    button {
+        width: 100%;
+        padding: 10px;
+        background-color: #FF5722;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #E64A19;
+    }
+    #result {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #F2F2F2;
+        border-radius: 12px;
+    }
+    #result h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+    nav {
+        display: flex;
+        justify-content: space-around;
+        background-color: #444;
+        padding: 1em;
+    }
+    nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+        transition: color 0.3s ease-in-out;
+    }
+    nav a:hover {
+        color: #ffcc00;
+    }
+    #result p {
+        margin-bottom: 5px;
+        color: #333;
+    }
+    header {
+        background-color: #333;
+        color: white;
+        text-align: center;
+        padding: 1.5em;
+        font-size: 2em;
+    }
+    </style>
+</head>
+<header>
+    Your Game Universe
+</header>
+<body>
+    <nav>
+        <a href="http://127.0.0.1:5500/_posts/index.html">HOME</a>
+        <a href="http://127.0.0.1:5500/_posts/gameslist.html">GAMES</a>
+        <a href="http://127.0.0.1:5500/_posts/favorites.html">FAVORITE</a>
+        <a href="http://127.0.0.1:5500/_posts/ibio.html">BIO</a>
+        <a href="http://127.0.0.1:5500/_posts/2024-02-07-SLogin copy.html">LOGIN</a>
+        <a href="http://127.0.0.1:5500/_posts/2024-02-06-SignUp.html">SIGN UP</a>
+        <a href="http://127.0.0.1:5500/_posts/edit.html">UPDATE</a>
+    </nav>
+    <title>{{ basename }} | {{ project }} </title>
+    <div class="right-aligned-container">
+        <div class="text-container">
+            <div class="text-box">
+                <h2>Here to Test for Cancer?</h2>
+                Please input your data into the cancer diagnosis program on the right. It will measure the specific characteristics of the cell to predict if you are suffering from or showing signs of cancer. If you do not have the cell data, ask your doctor to measure so you can use this website. Hope all goes well!
+            </div>
+            <div class="text-box" style="margin-top: 30px;">
+                <h2>If Malignant, Relief Stategies</h2>
+                If malignant of cancer, we are very sorry to hear. Some ways to make it go away are chemotherapy, surgeries, and medicine. Check up with your doctor often and make sure to stay physically active. Studies show that some relief strategies are playing game or drawing! We included a game on the website and a drawing program, where you can draw or play games to relieve from this stress. We hope this helps. You can find these relief activities near the top of the website, labeled "Drawing/Games". Hope all goes well, stay safe, stay healthy, all the best.
+            </div>
+        </div>
+        <div>
+            <h1>Predict Cancer Diagnosis</h1>
+            <label for="perimeter_mean">Perimeter Mean:</label>
+            <input type="number" id="perimeter_mean" name="perimeter_mean" required><br><br>
+            <label for="radius_mean">Radius Mean:</label>
+            <input type="number" id="radius_mean" name="radius_mean" required><br><br>
+            <label for="texture_mean">Texture Mean:</label>
+            <input type="number" id="texture_mean" name="texture_mean" required><br><br>
+            <label for="area_mean">Area Mean:</label>
+            <input type="number" id="area_mean" name="area_mean" required><br><br>
+            <label for="smoothness_mean">Smoothness Mean:</label>
+            <input type="number" id="smoothness_mean" name="smoothness_mean" required><br><br>
+            <label for="concavity_mean">Concavity Mean:</label>
+            <input type="number" id="concavity_mean" name="concavity_mean" required><br><br>
+            <label for="symmetry_mean">Symmetry Mean:</label>
+            <input type="number" id="symmetry_mean" name="symmetry_mean" required><br><br>
+            <button type="button" onclick="predictDiagnosis()">Predict Diagnosis</button>
+            <div id="result"></div>
+        
+            <script>
+                function predictDiagnosis() {
+                  // var form = document.getElementById('cancerForm');
+                  // var formData = new FormData(form);
+                  var perimeter_mean = document.getElementById('perimeter_mean').value;
+                  var radius_mean = document.getElementById('radius_mean').value;
+                  var texture_mean = document.getElementById('texture_mean').value;
+                  var area_mean = document.getElementById('area_mean').value;
+                  var smoothness_mean = document.getElementById('smoothness_mean').value;
+                  var concavity_mean = document.getElementById('concavity_mean').value;
+                  var symmetry_mean = document.getElementById('symmetry_mean').value;
+              
+                  fetch('http://127.0.0.1:8088/api/cancer/predict', {
+                      method: 'POST',
+                      headers: {
+                          'Content-Type': 'application/json',
+                          'Accept': 'application/json'
+                      },
+                      body: JSON.stringify({
+                          'perimeter_mean' : perimeter_mean,
+                          'radius_mean' : radius_mean,
+                          'texture_mean' : texture_mean,
+                          'area_mean' : area_mean,
+                          'smoothness_mean' : smoothness_mean,
+                          'concavity_mean' : concavity_mean,
+                          'symmetry_mean' : symmetry_mean 
+              
+                      })
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      var resultDiv = document.getElementById('result');
+                      resultDiv.innerHTML = '<h2>Prediction Result</h2>';
+                      for (var key in data) {
+                          resultDiv.innerHTML += '<p>' + key + ': ' + data[key] + '</p>';
+                      }
+                  })
+                  .catch(error => {
+                      console.error('Error:', error);
+                  });
+              }
+              </script>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+</html>

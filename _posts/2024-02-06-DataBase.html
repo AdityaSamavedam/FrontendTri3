@@ -10,7 +10,7 @@
     </tbody>
 </table>
 <script type="module">
-    const url = 'http://127.0.0.1:8084/api/users/';
+    const url = 'http://127.0.0.1:8088/api/users/';
     // prepare HTML result container for new output
     const resultContainer = document.getElementById("result");
     const options = {
@@ -29,7 +29,7 @@
             // check for response errors and display
             if (response.status !== 200) {
                 const errorMsg = 'Database response error: ' + response.status;
-                window.location.href = "http://127.0.0.1:5501/_posts/2024-02-07-401error.html";
+                window.location.href = "http://127.0.0.1:5500/_posts/2024-02-07-401error.html";
                 console.log(errorMsg);
                 const tr = document.createElement("tr");
                 const td = document.createElement("td");
@@ -62,7 +62,7 @@
             })
             // catch fetch errors (i.e., ACCESS to server blocked)
             .catch(err => {
-                window.location.href = "http://127.0.0.1:5501/_posts/2024-02-07-403error.html"
+                window.location.href = "http://127.0.0.1:5500/_posts/2024-02-07-403error.html"
                 console.error(err);
                 const tr = document.createElement("tr");
                 const td = document.createElement("td");
@@ -78,7 +78,7 @@
     function deleteUser() {
         // You can add your logic for deleting the user here
         console.log("in function");
-        const url = 'http://127.0.0.1:8084/api/users/';
+        const url = 'http://127.0.0.1:8088/api/users/';
         const options = {
             mode: 'cors', // no-cors, cors, same-origin
             credentials: 'include', // include, same-origin, omit
@@ -94,7 +94,7 @@
             // check for response errors and display
             if (response.status !== 200) {
                 const errorMsg = 'Database response error: ' + response.status;
-                window.location.href = "http://127.0.0.1:5501/_posts/2024-02-07-403error.html";
+                window.location.href = "http://127.0.0.1:5500/_posts/2024-02-07-403error.html";
                 console.log(errorMsg);
                 const tr = document.createElement("tr");
                 const td = document.createElement("td");
@@ -131,7 +131,7 @@
 <button type="button" onclick="update_user()">Update Account</button> -->
 <script>
     function update_user(){
-      const url = 'http://127.0.0.1:8084/api/users/';
+      const url = 'http://127.0.0.1:8088/api/users/';
       const body = {
         uid: document.getElementById("uid").value,
         password: document.getElementById("password").value,
